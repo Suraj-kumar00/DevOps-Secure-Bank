@@ -37,7 +37,9 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setAccount(account);
         transaction.setAmount(amount);
         transaction.setType("DEPOSIT");
+        transaction.setDescription("Cash deposit");
         transaction.setTimestamp(LocalDateTime.now());
+        transaction.setBalance(account.getBalance());
         transactionRepository.save(transaction);
     }
 
@@ -59,7 +61,9 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setAccount(account);
         transaction.setAmount(amount.negate());
         transaction.setType("WITHDRAWAL");
+        transaction.setDescription("Cash withdrawal");
         transaction.setTimestamp(LocalDateTime.now());
+        transaction.setBalance(account.getBalance());
         transactionRepository.save(transaction);
     }
 
@@ -93,6 +97,7 @@ public class TransactionServiceImpl implements TransactionService {
         withdrawalTx.setType("TRANSFER_OUT");
         withdrawalTx.setTimestamp(LocalDateTime.now());
         withdrawalTx.setDescription("Transfer to " + toAccount.getUsername());
+        withdrawalTx.setBalance(fromAccount.getBalance());
         transactionRepository.save(withdrawalTx);
 
         Transaction depositTx = new Transaction();
@@ -101,6 +106,7 @@ public class TransactionServiceImpl implements TransactionService {
         depositTx.setType("TRANSFER_IN");
         depositTx.setTimestamp(LocalDateTime.now());
         depositTx.setDescription("Transfer from " + fromAccount.getUsername());
+        depositTx.setBalance(toAccount.getBalance());
         transactionRepository.save(depositTx);
     }
 

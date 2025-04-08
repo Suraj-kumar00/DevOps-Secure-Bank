@@ -27,6 +27,9 @@ public class Transaction {
     private BigDecimal amount;
 
     @Column(nullable = false)
+    private BigDecimal balance;
+
+    @Column(nullable = false)
     private String type;  // DEBIT or CREDIT
 
     @Column
@@ -62,6 +65,14 @@ public class Transaction {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public String getType() {
