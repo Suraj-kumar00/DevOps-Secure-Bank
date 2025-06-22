@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   mysql:
     image: mysql:latest
@@ -18,7 +17,10 @@ services:
       start_period: 30s
 
   mainapp:
-    image: ${DUSER}/${IMAGE}
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile
+    platform: linux/amd64
     container_name: Bankapp
     environment:
       - SPRING_DATASOURCE_USERNAME=root
