@@ -72,7 +72,7 @@ SecureBank is a modern, secure banking application that demonstrates best practi
 2. Run the container:
    ```bash
    docker-compose up -d
-   ``` S
+   ``` 
 
 ## Contributing
 
